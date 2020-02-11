@@ -31,6 +31,7 @@ void AddressBook::RemoveEntry(Entry* entry)
 
 void AddressBook::EditEntry(Entry* entry)
 {
+	exitvar = true;
 	while (exitvar != false) {
 		std::cout << "*******************************\n";
 		std::cout << " [1] Edit first name\n";
@@ -80,8 +81,32 @@ void AddressBook::EditEntry(Entry* entry)
 
 void AddressBook::SortBook()
 {
-	entries.sort([](Entry* lhs, Entry* rhs) {return lhs->GetFirstName() < rhs->GetFirstName(); });
-	entries.sort([](Entry* lhs, Entry* rhs) {return lhs->GetLastName() < rhs->GetLastName(); });
+	exitvar = true;
+	while (exitvar != false) {
+		std::cout << "*******************************\n";
+		std::cout << " [1] Sort by first name\n";
+		std::cout << " [2] Sort by last name\n";
+		std::cout << " Enter your choice and press return: ";
+
+		std::cin >> choice;
+
+		switch(choice)
+		{
+		case 1:
+			entries.sort([](Entry* lhs, Entry* rhs) {return lhs->GetFirstName() < rhs->GetFirstName(); });
+			exitvar = false;
+			break;
+		case 2:
+			entries.sort([](Entry* lhs, Entry* rhs) {return lhs->GetLastName() < rhs->GetLastName(); });
+			exitvar = false;
+			break;
+		default:
+			std::cout << "Not a Valid Choice. \n";
+			std::cout << "Choose again.\n";
+			std::cin >> choice;
+			break;
+		}
+	}
 }
 
 void AddressBook::SaveBook(std::string filename)
