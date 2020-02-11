@@ -78,6 +78,19 @@ void AddressBook::EditEntry(Entry* entry)
 	}
 }
 
+void AddressBook::SortBook()
+{
+	entries.sort([](Entry* lhs, Entry* rhs) {return lhs->GetFirstName() < rhs->GetFirstName(); });
+}
+
+void AddressBook::SaveBook(std::string filename)
+{
+}
+
+void AddressBook::LoadBook(std::string filename)
+{
+}
+
 Entry* AddressBook::SearchAddressBook(std::string name)
 {
 	for (std::list<Entry*>::iterator currentEntry = this->entries.begin(); currentEntry != this->entries.end(); ++currentEntry) {
