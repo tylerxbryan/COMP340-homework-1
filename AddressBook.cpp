@@ -81,6 +81,7 @@ void AddressBook::EditEntry(Entry* entry)
 void AddressBook::SortBook()
 {
 	entries.sort([](Entry* lhs, Entry* rhs) {return lhs->GetFirstName() < rhs->GetFirstName(); });
+	entries.sort([](Entry* lhs, Entry* rhs) {return lhs->GetLastName() < rhs->GetLastName(); });
 }
 
 void AddressBook::SaveBook(std::string filename)
