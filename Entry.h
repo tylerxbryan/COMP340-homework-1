@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <boost/serialization/list.hpp>
 
 class Entry
 {
@@ -10,6 +11,11 @@ private:
 	std::string lastName;
 	std::string phoneNumber;
 	std::string address;
+	friend class boost::serialization::access;
+	template<typename Archive>
+	void serialize(Archive& ar, const unsigned version) {
+		ar& firstName & lastName & phoneNumber & address;
+	}
 
 public:
 	Entry();

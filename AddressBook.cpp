@@ -111,10 +111,14 @@ void AddressBook::SortBook()
 
 void AddressBook::SaveBook(std::string filename)
 {
+	std::ofstream ofs(filename);
+	boost::archive::binary_oarchive oa(ofs);
+	oa << entries;
 }
 
 void AddressBook::LoadBook(std::string filename)
 {
+
 }
 
 Entry* AddressBook::SearchAddressBook(std::string name)
