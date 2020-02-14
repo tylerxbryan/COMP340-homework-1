@@ -118,7 +118,9 @@ void AddressBook::SaveBook(std::string filename)
 
 void AddressBook::LoadBook(std::string filename)
 {
-
+	std::ifstream ifs(filename);
+	boost::archive::binary_iarchive ia(ifs);
+	ia >> entries;
 }
 
 Entry* AddressBook::SearchAddressBook(std::string name)
